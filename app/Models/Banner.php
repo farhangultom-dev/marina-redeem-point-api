@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
-class Article extends Model
+class Banner extends Model
 {
     use HasFactory;
 
@@ -16,17 +16,13 @@ class Article extends Model
      * @var array
      */
     protected $fillable = [
-        'title',
-        'description',
-        'link',
-        'is_link',
         'image',
     ];
 
     protected function image(): Attribute
     {
         return Attribute::make(
-            get: fn ($image) => url('/storage/image_articles/' . $image),
+            get: fn ($image) => url('/storage/image_banners/' . $image),
         );
     }
 }

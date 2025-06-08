@@ -121,6 +121,33 @@ class UserController extends Controller
 
     }
 
+    public function changePassword(Request $request)
+    {
+        //define validation rules
+        $validator = Validator::make($request->all(), [
+            'email'     => 'required',
+            'password'   => 'required',
+        ]);
+
+        //check if validation fails
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        //update password
+        $user = User::where('email', $request->email)->update([
+            'password' => Hash::make($request->password),
+        ]);
+
+        //return response
+        if($user){
+            return new UserResource(true, 'Password berhasil di ubah', array());
+        }
+
+        return new UserResource(true, 'User tidak ditemukan', $user);
+
+    }
+
     public function store(Request $request)
     {
         //define validation rules

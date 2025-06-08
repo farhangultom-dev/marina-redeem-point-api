@@ -20,6 +20,10 @@ return new class extends Migration
             $table->string('start_date');
             $table->string('end_date');
             $table->integer('point_needed');
+            $table->string('image1')->nullable();
+            $table->string('image2')->nullable();
+            $table->string('image3')->nullable();
+            $table->string('image4')->nullable();
             $table->tinyInteger('is_approved')->default(0);
             $table->timestamps();
             $table->softDeletes();
