@@ -93,6 +93,8 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'email'   => 'required',
             'token'   => 'required',
+            'new_password' => 'required',
+            
         ]);
 
         //check if validation fails
@@ -114,7 +116,15 @@ class UserController extends Controller
                 return new UserResource(false, 'Token expired, silahkan kirim ulang otp', array());
             }
 
-            return new UserResource(true, 'Token sesuai, silahkan ubah password anda', array());
+            //update password
+            $user = User::where('email', $request->email)->update([
+                'password' => Hash::make($request->new_password),
+            ]);
+
+            //return response
+            if($user){
+                return new UserResource(true, 'Password berhasil di ubah', array());
+            }
         }
 
         return new UserResource(false, 'token tidak sesuai, silahkan coba kembali', array());
@@ -156,7 +166,7 @@ class UserController extends Controller
             'email'   => 'required',
             'phone_number'   => 'required',
             'username'   => 'required',
-            'image'     => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            // 'image'     => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'point'   => 'required',
             'password' => 'required',
             'is_admin'   => 'required',
@@ -168,9 +178,9 @@ class UserController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        //upload image
-        $image = $request->file('image');
-        $image->storeAs('public/photo_profile', $image->hashName());
+        // //upload image
+        // $image = $request->file('image');
+        // $image->storeAs('public/photo_profile', $image->hashName());
 
         //create post
         $user = User::create([
@@ -179,7 +189,7 @@ class UserController extends Controller
             'phone_number'     => $request->phone_number,
             'email'   => $request->email,
             'password' => $request->password,
-            'image'     => $image->hashName(),
+            'image'     => 'https://cdn-icons-png.flaticon.com/512/8847/8847419.png', //$image->hashName(),
             'point'   => $request->point,
             'is_admin' => $request->is_admin,
             'is_partner' => $request->is_partner,

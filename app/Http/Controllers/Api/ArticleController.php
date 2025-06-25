@@ -15,7 +15,17 @@ class ArticleController extends Controller
 
         return response()->json([
             'status' => 'true',
-            'messsage' => 'berhasil upload banner',
+            'data' => $article,
+        ]);
+    }
+
+    public function getArticleById(Request $request)
+    {
+        $id = $request->query('id');
+        $article = Article::where('id',$id)->first();
+
+        return response()->json([
+            'status' => 'true',
             'data' => $article,
         ]);
     }
@@ -40,7 +50,7 @@ class ArticleController extends Controller
         $article = Article::create([
             'title' => $request->title,
             'description' => $request->description,
-            'link' => $request->is_link,
+            'link' => $request->link,
             'is_link' => $request->is_link,
             'image' => $image->hashName(),
         ]);
