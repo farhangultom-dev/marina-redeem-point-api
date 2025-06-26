@@ -189,7 +189,7 @@ class UserController extends Controller
             'phone_number'     => $request->phone_number,
             'email'   => $request->email,
             'password' => $request->password,
-            'image'     => 'https://cdn-icons-png.flaticon.com/512/8847/8847419.png', //$image->hashName(),
+            'image'     => '8847419.png', //$image->hashName(),
             'point'   => $request->point,
             'is_admin' => $request->is_admin,
             'is_partner' => $request->is_partner,
@@ -197,5 +197,40 @@ class UserController extends Controller
 
         //return response
         return new UserResource(true, 'Data User Berhasil Ditambahkan!', $user);
+    }
+
+    public function updateUser(Request $request)
+    {
+        //define validation rules
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required',
+            'full_name'     => 'required',
+            'email'   => 'required',
+            'phone_number'   => 'required',
+            'image'     => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        //check if validation fails
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $data_user = User::find($request->user_id);
+    
+        if(isset($request->image)){
+            $image = $request->file('image');
+            $image->storeAs('public/photo_profile', $image->hashName());
+            $data_user->image = $image->hashName();
+        }
+
+        $data_user->full_name = $request->full_name;
+        $data_user->email = $request->email;
+        $data_user->phone_number = $request->phone_number;
+
+        if($data_user->save()){
+            return new UserResource(true, 'Data User Berhasil Di Update!', $data_user);
+        }else{
+            return new UserResource(false, 'Data User Gagal Di Update!', array());
+        }
     }
 }

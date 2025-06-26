@@ -17,6 +17,7 @@ class HistoryRedeem extends Model
     protected $fillable = [
         'user_id',
         'voucher_id',
+        'code_voucher',
         'is_redeemed',
     ];
 }

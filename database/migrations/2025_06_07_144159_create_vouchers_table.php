@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('start_date');
             $table->string('end_date');
             $table->integer('point_needed');
+            $table->string('decline_reason')->default('');
             $table->string('image1')->nullable();
             $table->string('image2')->nullable();
             $table->string('image3')->nullable();

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('voucher_id');
+            $table->string('code_voucher');
             $table->tinyInteger('is_redeemed')->default(0);
             $table->timestamps();
         });

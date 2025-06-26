@@ -15,6 +15,7 @@ class CategoryPartner extends Model
      * @var array
      */
     protected $fillable = [
+        'id',
         'nama_category',
     ];
 }
