@@ -11,7 +11,7 @@ class BannerController extends Controller
 {
     public function getBanner()
     {
-        $banners = Banner::all();
+        $banners = Banner::whereNull('deleted_at')->get();
 
         return response()->json([
             'status' => 'true',
