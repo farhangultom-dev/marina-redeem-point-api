@@ -29,6 +29,7 @@ Route::get('/get-partners-by-category', [PartnertshipController::class, 'getPart
 Route::get('/get-category-partners', [PartnertshipController::class, 'getCategoryPartners']);
 Route::post('/update-partnertship', [PartnertshipController::class, 'updatePartnertship']);
 Route::post('/update-photo-partnertship', [PartnertshipController::class, 'updatePhotoPartnertship']);
+Route::post('/delete-partner', [PartnertshipController::class, 'deletePartner']);
 
 Route::get('/get-voucher-by-category', [VoucherController::class, 'getVoucherByCategory']);
 Route::post('/add-voucher', [VoucherController::class, 'addVoucher']);

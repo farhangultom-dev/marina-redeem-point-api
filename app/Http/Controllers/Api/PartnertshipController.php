@@ -82,12 +82,41 @@ class PartnertshipController extends Controller
 
     public function getPartnersByCategory(Request $request) {
         $id = $request->query('category_id');
-        $partners = Partner::where('category_partner_id',$id)->paginate(10);
+        $partners = Partner::where('category_partner_id',$id)
+        ->whereNull('deleted_at')
+        ->paginate(10);
 
         return response()->json([
             'status' => 'true',
             'data' => $partners,
         ]);
+    }
+
+    public function deletePartner(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id_partner' => 'required'
+        ]);
+
+        //check if validation fails
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $data = Partner::find($request->id_partner);
+        $data->delete();
+
+        if($data){
+            return response()->json([
+                'status' => 'true',
+                'messsage' => 'berhasil delete partner'
+            ]);
+        }else{
+             return response()->json([
+                'status' => 'false',
+                'messsage' => 'gagal delete partner'
+            ]);
+        }
     }
 
     public function getCategoryPartners(Request $request) {
