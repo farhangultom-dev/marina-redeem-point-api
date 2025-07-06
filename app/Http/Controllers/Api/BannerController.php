@@ -46,4 +46,31 @@ class BannerController extends Controller
         ]);
         }
     }
+
+    public function deleteBanner(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id_banner' => 'required'
+        ]);
+
+        //check if validation fails
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $data = Banner::find($request->id_banner);
+        $data->delete();
+
+        if($data){
+            return response()->json([
+                'status' => 'true',
+                'messsage' => 'berhasil delete banner'
+            ]);
+        }else{
+             return response()->json([
+                'status' => 'false',
+                'messsage' => 'gagal delete banner'
+            ]);
+        }
+    }
 }

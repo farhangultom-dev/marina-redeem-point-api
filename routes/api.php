@@ -18,6 +18,7 @@ Route::post('/update-user', [UserController::class, 'updateUser']);
 
 Route::get('/banners', [BannerController::class, 'getBanner']);
 Route::post('/add-banner', [BannerController::class, 'addBanner']);
+Route::post('/delete-banner', [BannerController::class, 'deleteBanner']);
 
 Route::get('/articles', [ArticleController::class, 'getArticle']);
 Route::get('/article-by-id', [ArticleController::class, 'getArticleById']);
@@ -38,6 +39,7 @@ Route::post('/scan-voucher', [VoucherController::class, 'scanVoucherCode']);
 Route::post('/approval-voucher', [VoucherController::class, 'approvalVoucher']);
 Route::post('/delete-voucher', [VoucherController::class, 'deleteVoucher']);
 Route::post('/update-voucher', [VoucherController::class, 'updateVoucher']);
+Route::get('/get-voucher-by-partner', [VoucherController::class, 'getVoucherByPartner']);
 
 Route::get('/get-category', [CategoryPartnerController::class, 'getCategory']);
 

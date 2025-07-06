@@ -51,6 +51,38 @@ class VoucherController extends Controller
         ]);
     }
 
+    public function getVoucherByPartner(Request $request)
+    {
+        $id_partner = $request->query('id_partner');
+        $status = $request->query('is_approved');
+
+        if($status == '3'){
+            $voucher = Voucher::where('id_partner',$id_partner)
+            ->where('end_date', '<', Carbon::today())
+            ->where('is_approved','1')
+            ->whereNull('deleted_at')
+            ->paginate('10');
+
+            return response()->json([
+            'status' => 'true',
+            'messsage' => 'berhasil mendapatkan data',
+            'data' => $voucher,
+            ]);
+        }
+
+        $voucher = Voucher::where('id_partner',$id_partner)
+        ->where('end_date', '>', Carbon::today())
+        ->where('is_approved',$status)
+        ->whereNull('deleted_at')
+        ->paginate('10');
+
+        return response()->json([
+            'status' => 'true',
+            'messsage' => 'berhasil mendapatkan data',
+            'data' => $voucher,
+        ]);
+    }
+
     public function addVoucher(Request $request) 
     {
         $validator = Validator::make($request->all(), [

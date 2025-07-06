@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 class Banner extends Model
 {
     use HasFactory;
+    use softDeletes;
 
     /**
      * fillable
