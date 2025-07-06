@@ -23,6 +23,7 @@ class PartnertshipController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'password' => 'required',
             'phone_number' => 'required',
+            'email' => 'required'
 
         ]);
 
@@ -37,7 +38,7 @@ class PartnertshipController extends Controller
             'full_name'     => $request->nama_partner,
             'username'   => $request->username,
             'phone_number'     => $request->phone_number,
-            'email'   => '-',
+            'email'   => $request->email,
             'password' => $request->password,
             'image'     => 'https://cdn-icons-png.flaticon.com/512/8847/8847419.png', //$image->hashName(),
             'point'   => '0',
