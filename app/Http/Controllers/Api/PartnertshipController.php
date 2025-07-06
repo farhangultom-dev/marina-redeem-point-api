@@ -21,7 +21,9 @@ class PartnertshipController extends Controller
             'nama_partner' => 'required',
             'city' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'password' => 'required'
+            'password' => 'required',
+            'phone_number' => 'required',
+
         ]);
 
         //check if validation fails
@@ -34,7 +36,7 @@ class PartnertshipController extends Controller
         $user = User::create([
             'full_name'     => $request->nama_partner,
             'username'   => $request->username,
-            'phone_number'     => '-',
+            'phone_number'     => $request->phone_number,
             'email'   => '-',
             'password' => $request->password,
             'image'     => 'https://cdn-icons-png.flaticon.com/512/8847/8847419.png', //$image->hashName(),
