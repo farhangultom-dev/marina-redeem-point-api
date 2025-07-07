@@ -41,7 +41,7 @@ class BannerController extends Controller
         if($banners){
             return response()->json([
             'status' => 'true',
-            'messsage' => 'berhasil upload banner',
+            'message' => 'berhasil upload banner',
             'data' => $banners,
         ]);
         }
@@ -64,12 +64,12 @@ class BannerController extends Controller
         if($data){
             return response()->json([
                 'status' => 'true',
-                'messsage' => 'berhasil delete banner'
+                'message' => 'berhasil delete banner'
             ]);
         }else{
              return response()->json([
                 'status' => 'false',
-                'messsage' => 'gagal delete banner'
+                'message' => 'gagal delete banner'
             ]);
         }
     }

@@ -59,14 +59,14 @@ class ArticleController extends Controller
         {
             return response()->json([
                 'status' => 'true',
-                'messsage' => 'berhasil upload article',
+                'message' => 'berhasil upload article',
                 'data' => $article,
             ]);
         }
 
         return response()->json([
             'status' => 'false',
-            'messsage' => 'gagal upload article, silahkan coba lagi'
+            'message' => 'gagal upload article, silahkan coba lagi'
         ]);
     }
 }

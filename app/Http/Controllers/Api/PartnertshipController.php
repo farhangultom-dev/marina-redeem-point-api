@@ -62,14 +62,14 @@ class PartnertshipController extends Controller
         {
             return response()->json([
                 'status' => 'true',
-                'messsage' => 'berhasil upload partner',
+                'message' => 'berhasil upload partner',
                 'data' => $article,
             ]);
         }
 
         return response()->json([
             'status' => 'false',
-            'messsage' => 'gagal upload partner, silahkan coba lagi'
+            'message' => 'gagal upload partner, silahkan coba lagi'
         ]);
     }
 
@@ -112,12 +112,12 @@ class PartnertshipController extends Controller
         if($data){
             return response()->json([
                 'status' => 'true',
-                'messsage' => 'berhasil delete partner'
+                'message' => 'berhasil delete partner'
             ]);
         }else{
              return response()->json([
                 'status' => 'false',
-                'messsage' => 'gagal delete partner'
+                'message' => 'gagal delete partner'
             ]);
         }
     }
@@ -169,13 +169,13 @@ class PartnertshipController extends Controller
         {
             return response()->json([
                 'status' => 'true',
-                'messsage' => 'berhasil update partner'
+                'message' => 'berhasil update partner'
             ]);
         }
 
         return response()->json([
             'status' => 'false',
-            'messsage' => 'gagal upload partner, silahkan coba lagi'
+            'message' => 'gagal upload partner, silahkan coba lagi'
         ]);
     }
 
@@ -204,13 +204,13 @@ class PartnertshipController extends Controller
         {
             return response()->json([
                 'status' => 'true',
-                'messsage' => 'berhasil update foto partner'
+                'message' => 'berhasil update foto partner'
             ]);
         }
 
         return response()->json([
             'status' => 'false',
-            'messsage' => 'gagal upload foto partner, silahkan coba lagi'
+            'message' => 'gagal upload foto partner, silahkan coba lagi'
         ]);
     }
 }
