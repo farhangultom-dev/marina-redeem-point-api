@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Voucher;
 use App\Models\Partner;
 use App\Models\HistoryRedeem;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
