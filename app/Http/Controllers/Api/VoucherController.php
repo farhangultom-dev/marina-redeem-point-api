@@ -19,7 +19,7 @@ class VoucherController extends Controller
         $id_category = $request->query('id');
         $status = $request->query('is_approved');
 
-        $partners = Partner::select('id')
+        $partners = Partner::select('user_id')
         ->where('category_partner_id', $id_category)
         ->whereNull('deleted_at')
         ->get();
