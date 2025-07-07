@@ -208,7 +208,8 @@ class VoucherController extends Controller
         $validator = Validator::make($request->all(), [
             'id_voucher' => 'required',
             'id_user' => 'required',
-            'voucher_code' => 'required'
+            'voucher_code' => 'required',
+            'point' => 'required'
         ]);
 
         //check if validation fails
@@ -306,6 +307,13 @@ class VoucherController extends Controller
             'code_voucher' => $request->voucher_code,
             'is_redeemed' => '1',
         ]);
+
+        //disini point usernya di kurangin
+        $data_user = User::find($request->id_user);
+        $point_user = $data_user->point;
+        $data_user->point = $point_user - $request->point;
+        $data_user->save();
+
 
         if($add_redeem){
             return response()->json([
