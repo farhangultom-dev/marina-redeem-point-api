@@ -33,7 +33,7 @@ class VoucherController extends Controller
 
             return response()->json([
             'status' => 'true',
-            'messsage' => 'berhasil mendapatkan data',
+            'message' => 'berhasil mendapatkan data',
             'data' => $voucher,
             ]);
         }
@@ -46,7 +46,7 @@ class VoucherController extends Controller
 
         return response()->json([
             'status' => 'true',
-            'messsage' => 'berhasil mendapatkan data',
+            'message' => 'berhasil mendapatkan data',
             'data' => $voucher,
         ]);
     }
@@ -65,7 +65,7 @@ class VoucherController extends Controller
 
             return response()->json([
             'status' => 'true',
-            'messsage' => 'berhasil mendapatkan data',
+            'message' => 'berhasil mendapatkan data',
             'data' => $voucher,
             ]);
         }
@@ -78,7 +78,7 @@ class VoucherController extends Controller
 
         return response()->json([
             'status' => 'true',
-            'messsage' => 'berhasil mendapatkan data',
+            'message' => 'berhasil mendapatkan data',
             'data' => $voucher,
         ]);
     }
@@ -135,13 +135,13 @@ class VoucherController extends Controller
         if($add_voucher){
             return response()->json([
                 'status' => 'true',
-                'messsage' => 'berhasil add voucher',
+                'message' => 'berhasil add voucher',
                 'data' => $add_voucher,
             ]);
         }else{
             return response()->json([
                 'status' => 'false',
-                'messsage' => 'gagal add voucher'
+                'message' => 'gagal add voucher'
             ]);
         }
     }
@@ -156,7 +156,7 @@ class VoucherController extends Controller
         if($check_voucher->isEmpty()){
             return response()->json([
                 'status' => 'false',
-                'messsage' => 'voucher tidak ditemukan'
+                'message' => 'voucher tidak ditemukan'
             ]);
         }
 
@@ -165,7 +165,7 @@ class VoucherController extends Controller
         if($user_point < $check_voucher[0]->point_needed){
             return response()->json([
                 'status' => 'false',
-                'messsage' => 'point anda tidak mencukupi'
+                'message' => 'point anda tidak mencukupi'
             ]);
         }
 
@@ -182,13 +182,13 @@ class VoucherController extends Controller
             if($total_voucher_existing->total_voucher <= $total_voucher_redeemed){
                 return response()->json([
                     'status' => 'false',
-                    'messsage' => 'voucher sudah habis, silahkan pilih voucher yang lain ya!'
+                    'message' => 'voucher sudah habis, silahkan pilih voucher yang lain ya!'
                 ]);
             }
         }else{
              return response()->json([
                 'status' => 'false',
-                'messsage' => 'voucher tidak ditemukan'
+                'message' => 'voucher tidak ditemukan'
             ]);
         }
 
@@ -198,7 +198,7 @@ class VoucherController extends Controller
 
         return response()->json([
             'status' => 'true',
-            'messsage' => 'voucher ditemukan',
+            'message' => 'voucher ditemukan',
             'data' => $voucher_code
         ]);
     }
@@ -229,7 +229,7 @@ class VoucherController extends Controller
         }else{
              return response()->json([
                 'status' => 'false',
-                'messsage' => 'voucher tidak valid'
+                'message' => 'voucher tidak valid'
             ]);
         }
 
@@ -239,13 +239,13 @@ class VoucherController extends Controller
             if($check_voucher->isEmpty()){
                 return response()->json([
                     'status' => 'false',
-                    'messsage' => 'voucher tidak ditemukan'
+                    'message' => 'voucher tidak ditemukan'
                 ]);
             }
         }else{
             return response()->json([
                 'status' => 'false',
-                'messsage' => 'voucher tidak valid'
+                'message' => 'voucher tidak valid'
             ]);
         }
 
@@ -254,13 +254,13 @@ class VoucherController extends Controller
                 if($length != 6){
                     return response()->json([
                     'status' => 'false',
-                    'messsage' => 'voucher tidak valid'
+                    'message' => 'voucher tidak valid'
                 ]);
             }
         }else{
             return response()->json([
                 'status' => 'false',
-                'messsage' => 'voucher tidak valid'
+                'message' => 'voucher tidak valid'
             ]);
         }
 
@@ -278,13 +278,13 @@ class VoucherController extends Controller
             if($total_voucher_existing->total_voucher <= $total_voucher_redeemed){
                 return response()->json([
                     'status' => 'false',
-                    'messsage' => 'voucher sudah habis, silahkan pilih voucher yang lain ya!'
+                    'message' => 'voucher sudah habis, silahkan pilih voucher yang lain ya!'
                 ]);
             }
         }else{
              return response()->json([
                 'status' => 'false',
-                'messsage' => 'voucher tidak ditemukan'
+                'message' => 'voucher tidak ditemukan'
             ]);
         }
 
@@ -295,7 +295,7 @@ class VoucherController extends Controller
         if($voucher_is_used > 0){
              return response()->json([
                 'status' => 'false',
-                'messsage' => 'code voucher ini sudah digunakan'
+                'message' => 'code voucher ini sudah digunakan'
             ]);
         }
         
@@ -310,12 +310,12 @@ class VoucherController extends Controller
         if($add_redeem){
             return response()->json([
                 'status' => 'true',
-                'messsage' => 'berhasil scan voucher'
+                'message' => 'berhasil scan voucher'
             ]);
         }else{
             return response()->json([
                 'status' => 'false',
-                'messsage' => 'gagal scan code voucher'
+                'message' => 'gagal scan code voucher'
             ]);
         }
 
@@ -343,12 +343,12 @@ class VoucherController extends Controller
             if($update_voucher){
                 return response()->json([
                     'status' => 'true',
-                    'messsage' => 'berhasil approval voucher'
+                    'message' => 'berhasil approval voucher'
                 ]);
             }else{
                 return response()->json([
                     'status' => 'false',
-                    'messsage' => 'gagal approval voucher'
+                    'message' => 'gagal approval voucher'
                 ]);
             }
         }
@@ -363,12 +363,12 @@ class VoucherController extends Controller
         if($update_voucher){
              return response()->json([
                 'status' => 'true',
-                'messsage' => 'berhasil approval voucher'
+                'message' => 'berhasil approval voucher'
             ]);
         }else{
              return response()->json([
                 'status' => 'false',
-                'messsage' => 'gagal approval voucher'
+                'message' => 'gagal approval voucher'
             ]);
         }
 
@@ -391,12 +391,12 @@ class VoucherController extends Controller
         if($data){
             return response()->json([
                 'status' => 'true',
-                'messsage' => 'berhasil delete voucher'
+                'message' => 'berhasil delete voucher'
             ]);
         }else{
              return response()->json([
                 'status' => 'false',
-                'messsage' => 'gagal delete voucher'
+                'message' => 'gagal delete voucher'
             ]);
         }
     }
@@ -462,13 +462,13 @@ class VoucherController extends Controller
         if($voucher->save()){
             return response()->json([
                 'status' => 'true',
-                'messsage' => 'berhasil update voucher',
+                'message' => 'berhasil update voucher',
                 'data' => $voucher,
             ]);
         }else{
             return response()->json([
                 'status' => 'false',
-                'messsage' => 'gagal update voucher'
+                'message' => 'gagal update voucher'
             ]);
         }
     }
