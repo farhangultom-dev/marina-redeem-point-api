@@ -223,7 +223,7 @@ class VoucherController extends Controller
             if($explode_voucher[0] != 'VOU'){
                     return response()->json([
                     'status' => 'false',
-                    'messsage' => 'voucher tidak valid'
+                    'message' => 'voucher tidak valid'
                 ]);
             }
         }else{
