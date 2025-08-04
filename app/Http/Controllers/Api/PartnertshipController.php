@@ -112,7 +112,7 @@ class PartnertshipController extends Controller
 
         if($data){
             $user = User::find($user_id);
-            $data->delete();
+            $user->delete();
 
             if($user){
                 return response()->json([
