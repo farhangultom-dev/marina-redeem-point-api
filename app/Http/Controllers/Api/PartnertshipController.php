@@ -107,13 +107,26 @@ class PartnertshipController extends Controller
         }
 
         $data = Partner::find($request->id_partner);
+        $user_id = $data->user_id;
         $data->delete();
 
         if($data){
-            return response()->json([
+            $user = User::find($user_id);
+            $data->delete();
+
+            if($user){
+                return response()->json([
                 'status' => 'true',
                 'message' => 'berhasil delete partner'
             ]);
+
+            }else{
+                return response()->json([
+                'status' => 'false',
+                'message' => 'gagal delete partner'
+            ]);
+            }
+            
         }else{
              return response()->json([
                 'status' => 'false',

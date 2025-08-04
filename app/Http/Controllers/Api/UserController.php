@@ -36,6 +36,7 @@ class UserController extends Controller
         $user = User::where('email', $request->username_email_or_phone)
                 ->orWhere('username', $request->username_email_or_phone)
                 ->orWhere('phone_number', $request->username_email_or_phone)
+                ->whereNull('deleted_at')
                 ->first();
 
         if ($user && Hash::check($request->password, $user->password)) {
