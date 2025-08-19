@@ -74,14 +74,22 @@ class UserController extends Controller
 
             if($passwordToken)
             {
+                // Send token by sms
+                $useranme_sms_gateway = env('USERNAME_SMS_GATEWAY');
+                $password_sms_gateway = env('PASSWORD_SMS_GATEWAY');
+                $user_phone = $user->phone_number;
+                $url = "http://api.gosmsgateway.net/api/Send.php?username=$useranme_sms_gateway&mobile=$user_phone&message=Your OTP Code $token&password=$password_sms_gateway";
+
+                $response = Http::get($url);
+
                 // Send token by email
-                Mail::raw("Your verification code is: {$token}", function ($mail) use ($user) {
-                    $mail->to($user->email)
-                        ->subject('Your Verification Code');
-                });
+                // Mail::raw("Your verification code is: {$token}", function ($mail) use ($user) {
+                //     $mail->to($user->email)
+                //         ->subject('Your Verification Code');
+                // });
             }
 
-            return new UserResource(true, 'Silahkan cek email anda untuk mendapatkan kode otp', array());
+            return new UserResource(true, 'Silahkan cek sms yang terdaftar pada akun anda untuk mendapatkan kode otp', array());
         }
 
         return new UserResource(false, 'email tidak ditemukan', array());
