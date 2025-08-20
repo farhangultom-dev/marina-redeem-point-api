@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Http;
 
 class UserController extends Controller
 {
@@ -78,7 +79,7 @@ class UserController extends Controller
                 $useranme_sms_gateway = env('USERNAME_SMS_GATEWAY');
                 $password_sms_gateway = env('PASSWORD_SMS_GATEWAY');
                 $user_phone = $user->phone_number;
-                $url = "http://api.gosmsgateway.net/api/Send.php?username=$useranme_sms_gateway&mobile=$user_phone&message=Your OTP Code $token&password=$password_sms_gateway";
+                $url = "https://secure.gosmsgateway.com/masking/api/send.php?username=$useranme_sms_gateway&mobile=$user_phone&message=Your OTP $token&password=$password_sms_gateway";
 
                 $response = Http::get($url);
 
