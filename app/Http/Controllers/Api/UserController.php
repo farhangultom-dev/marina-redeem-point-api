@@ -52,7 +52,7 @@ class UserController extends Controller
     {
         //define validation rules
         $validator = Validator::make($request->all(), [
-            'email'   => 'required'
+            'username'   => 'required'
         ]);
 
         //check if validation fails
@@ -60,7 +60,7 @@ class UserController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        $user = User::where('email', $request->email)
+        $user = User::where('username', $request->username)
                 ->first();
 
         if ($user) {
@@ -68,7 +68,7 @@ class UserController extends Controller
 
             //create post
             $passwordToken = PasswordResetToken::create([
-                'email'     => $request->email,
+                'email'     => $request->username,
                 'token'   => $token,
                 'created_at' => Carbon::now()
             ]);
