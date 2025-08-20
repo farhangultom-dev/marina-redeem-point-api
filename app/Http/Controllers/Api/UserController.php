@@ -110,7 +110,7 @@ class UserController extends Controller
     {
         //define validation rules
         $validator = Validator::make($request->all(), [
-            'email'   => 'required',
+            'username'   => 'required',
             'token'   => 'required',
             'new_password' => 'required',
             
@@ -121,7 +121,7 @@ class UserController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        $passwordToken = PasswordResetToken::where('email', $request->email)
+        $passwordToken = PasswordResetToken::where('email', $request->username)
                 ->where('token', $request->token)
                 ->orderBy('created_at','desc')
                 ->first();
@@ -136,7 +136,7 @@ class UserController extends Controller
             }
 
             //update password
-            $user = User::where('email', $request->email)->update([
+            $user = User::where('email', $request->username)->update([
                 'password' => Hash::make($request->new_password),
             ]);
 
