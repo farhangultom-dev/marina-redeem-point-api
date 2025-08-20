@@ -136,7 +136,7 @@ class UserController extends Controller
             }
 
             //update password
-            $user = User::where('email', $request->username)->update([
+            $user = User::where('username', $request->username)->update([
                 'password' => Hash::make($request->new_password),
             ]);
 
