@@ -92,7 +92,7 @@ class UserController extends Controller
                     // Success logic
                     $responseData = $response->json(); // If the response is JSON
 
-                    return new UserResource(true, "Token sent successfully $username_sms_gateway $password_sms_gateway", $responseData);
+                    return new UserResource(true, "Token sent successfully", $responseData);
                 } else {
                     // Error handling
                     return new UserResource(false, 'Failed to send Token', array());
