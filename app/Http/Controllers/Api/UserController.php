@@ -75,22 +75,29 @@ class UserController extends Controller
 
             if($passwordToken)
             {
-                // Send token by sms
-                $useranme_sms_gateway = env('USERNAME_SMS_GATEWAY');
+                // Ensure your .env file contains the correct credentials
+                $username_sms_gateway = env('USERNAME_SMS_GATEWAY');
                 $password_sms_gateway = env('PASSWORD_SMS_GATEWAY');
                 $user_phone = $user->phone_number;
-                $url = "https://secure.gosmsgateway.com/masking/api/send.php?username=$useranme_sms_gateway&mobile=$user_phone&message=Your OTP $token&password=$password_sms_gateway";
+                $message = "Your token is: " . $token; // Replace $token with the actual token value
 
+                // Construct the URL with all parameters
+                $url = "https://secure.gosmsgateway.com/masking/api/send.php?username={$username_sms_gateway}&mobile={$user_phone}&message={$message}&password={$password_sms_gateway}";
+
+                // Send the request
                 $response = Http::get($url);
 
-                // Send token by email
-                // Mail::raw("Your verification code is: {$token}", function ($mail) use ($user) {
-                //     $mail->to($user->email)
-                //         ->subject('Your Verification Code');
-                // });
+                // Check the response
+                if ($response->successful()) {
+                    // Success logic
+                    return new UserResource(true, 'Token sent successfully', array());
+                } else {
+                    // Error handling
+                    return new UserResource(false, 'Failed to send Token', array());
+                }
             }
 
-            return new UserResource(true, 'Silahkan cek sms yang terdaftar pada akun anda untuk mendapatkan kode otp', array());
+            return new UserResource(false, 'Terjadi kesalahan', array());
         }
 
         return new UserResource(false, 'email tidak ditemukan', array());
