@@ -90,7 +90,9 @@ class UserController extends Controller
                 // Check the response
                 if ($response->successful()) {
                     // Success logic
-                    return new UserResource(true, "Token sent successfully", array());
+                    $responseData = $response->json(); // If the response is JSON
+
+                    return new UserResource(true, "Token sent successfully", $responseData);
                 } else {
                     // Error handling
                     return new UserResource(false, 'Failed to send Token', array());
