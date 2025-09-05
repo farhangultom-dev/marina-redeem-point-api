@@ -17,8 +17,18 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::latest()->paginate(5);
-        return new UserResource(true, 'List Data Users', $users);
+        if ($request->has('user_id')) {
+            $user = User::find($request->id);
+            
+            if (!$user) {
+                return response()->json(['message' => 'User not found'], 404);
+            }
+            
+            return new UserResource(true, 'User Found', $user);
+        } else {
+            $users = User::latest()->paginate(5);
+            return new UserResource(true, 'List Data Users', $users);
+        }
     }
 
     public function login(Request $request)
