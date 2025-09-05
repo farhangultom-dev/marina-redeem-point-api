@@ -300,6 +300,17 @@ class VoucherController extends Controller
                 'message' => 'code voucher ini sudah digunakan'
             ]);
         }
+
+        //disini check dulu point user cukup atau enggak
+        $data_user = User::find($request->id_user);
+        $point_user = $data_user->point;
+
+        if($point_user < $request->point){
+            return response()->json([
+                'status' => 'false',
+                'message' => 'point yang anda miliki tidak cukup'
+            ]);
+        }
         
 
         $add_redeem = HistoryRedeem::create([
@@ -310,8 +321,6 @@ class VoucherController extends Controller
         ]);
 
         //disini point usernya di kurangin
-        $data_user = User::find($request->id_user);
-        $point_user = $data_user->point;
         $data_user->point = $point_user - $request->point;
         $data_user->save();
 
