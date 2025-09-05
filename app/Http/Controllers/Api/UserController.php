@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Http;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         if ($request->has('user_id')) {
             $user = User::find($request->id);
