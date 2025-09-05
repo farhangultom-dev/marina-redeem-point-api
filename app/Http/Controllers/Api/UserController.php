@@ -18,7 +18,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         if ($request->has('user_id')) {
-            $user = User::find($request->id);
+            $user = User::find($request->user_id);
             
             if (!$user) {
                 return response()->json(['message' => 'User not found'], 404);
