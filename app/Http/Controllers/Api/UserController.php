@@ -271,7 +271,7 @@ class UserController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        $user = User::find($user_id);
+        $user = User::find($request->user_id);
         $user->delete();
 
         if ($user) {
