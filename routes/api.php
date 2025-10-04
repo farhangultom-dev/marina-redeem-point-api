@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\Api\BannerController;
 use App\Http\Controllers\Api\ArticleController;
-use App\Http\Controllers\Api\PartnertshipController;
-use App\Http\Controllers\Api\VoucherController;
-use App\Http\Controllers\Api\HistoryController;
+use App\Http\Controllers\Api\BannerController;
 use App\Http\Controllers\Api\CategoryPartnerController;
+use App\Http\Controllers\Api\HistoryController;
+use App\Http\Controllers\Api\PartnertshipController;
+use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\VoucherController;
 use Illuminate\Support\Facades\Route;
 
 Route::apiResource('/users', UserController::class);
@@ -15,6 +15,8 @@ Route::post('/forgot-password', [UserController::class, 'forgotPassword']);
 Route::post('/check-otp', [UserController::class, 'checkOtp']);
 Route::post('/change-password', [UserController::class, 'changePassword']);
 Route::post('/update-user', [UserController::class, 'updateUser']);
+Route::post('/update-user', [UserController::class, 'updateUser']);
+Route::post('/delete-user', [UserController::class, 'deleteUser']);
 
 Route::get('/banners', [BannerController::class, 'getBanner']);
 Route::post('/add-banner', [BannerController::class, 'addBanner']);
