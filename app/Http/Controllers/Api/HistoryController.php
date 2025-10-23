@@ -39,7 +39,7 @@ class HistoryController extends Controller
             ->join('vouchers', 'history_redeems.voucher_id', '=', 'vouchers.id')
             ->join('partners', 'vouchers.id_partner', '=', 'partners.user_id')
             ->join('users', 'history_redeems.user_id', '=', 'users.id')
-            ->where('partners.id', $request->query('partner_id'))
+            ->where('partners.user_id', $request->query('partner_id'))
             ->select('partners.id as partner_id',
                 'history_redeems.voucher_id', 'users.full_name as customer_name', 'users.phone_number',
                 'vouchers.point_needed as point',
