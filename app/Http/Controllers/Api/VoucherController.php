@@ -299,29 +299,6 @@ class VoucherController extends Controller
             ]);
         }
 
-        // check voucher exist
-        $total_voucher_existing = Voucher::select('total_voucher')
-            ->where('id', $request->id_voucher)
-            ->where('is_approved', '1')
-            ->first();
-
-        $total_voucher_redeemed = HistoryRedeem::where('voucher_id', $request->id_voucher)
-            ->count();
-
-        if ($total_voucher_existing != null) {
-            if ($total_voucher_existing->total_voucher <= $total_voucher_redeemed) {
-                return response()->json([
-                    'status' => 'false',
-                    'message' => 'voucher sudah habis, silahkan pilih voucher yang lain ya!',
-                ]);
-            }
-        } else {
-            return response()->json([
-                'status' => 'false',
-                'message' => 'voucher tidak ditemukan',
-            ]);
-        }
-
         $voucher_is_used = HistoryRedeem::where('voucher_id', $request->id_voucher)
             ->where('code_voucher', $request->voucher_code)
             ->count();
