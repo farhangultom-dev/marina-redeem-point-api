@@ -218,7 +218,7 @@ class VoucherController extends Controller
         }
 
         // check voucher exist
-        $total_voucher_existing = Voucher::select('total_voucher')
+        $total_voucher_existing = Voucher::select('total_voucher', 'id_partner')
             ->where('id', $request->id_voucher)
             ->where('is_approved', '1')
             ->first();
@@ -337,7 +337,7 @@ class VoucherController extends Controller
         $data_user = User::find($request->id_user);
         $point_user = $data_user->point;
 
-        if ($total_voucher_existing->id_partner != '63') {
+        if ($total_voucher_existing->id_partner != 63) {
             // bukan marina
             if ($point_user < $request->point) {
                 return response()->json([
@@ -348,7 +348,7 @@ class VoucherController extends Controller
         }
 
         // disini point usernya di kurangin atau di tambah kalo dia marina
-        if ($total_voucher_existing->id_partner == '63') {
+        if ($total_voucher_existing->id_partner == 63) {
             // tambah point
             $data_user->point = $point_user + $request->point;
         } else {
